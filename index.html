@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        :root {
+            --pink: #ff85a1;
+            --light-pink: #fce4ec;
+            --dark-pink: #d81b60;
+        }
+
+        body {
+            background-color: var(--light-pink);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        h1 { color: var(--dark-pink); font-size: 1.5rem; }
+        img { width: 150px; margin-bottom: 1rem; border-radius: 15px; }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            height: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn { background-color: var(--pink); color: white; }
+        #noBtn { 
+            background-color: #eee; 
+            color: #666; 
+            position: absolute; 
+        }
+
+        .hidden { display: none !important; }
+
+        /* Gift Grid */
+        .gift-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .gift-card {
+            background: var(--light-pink);
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="screen1" class="container">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIyc2RyeXFmZ3R4bmV3YXJueW94bmV3YXJueW94bmV3YXJueW94JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/L4lvBpHFmTC6O6u62Z/giphy.gif" alt="Cute Cat">
+        <h1 id="main-text">Will you be my Valentine?</h1>
+        <div class="btn-group">
+            <button id="yesBtn" onclick="nextScreen()">YES OF COURSE</button>
+            <button id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">NO THANK YOU</button>
+        </div>
+    </div>
+
+    <div id="screen2" class="container hidden">
+        <h1>Yay, you said yes!</h1>
+        <p>I made these for you, babe</p>
+        <div class="gift-grid">
+            <div class="gift-card" onclick="alert('🌸 You got a Rose Bouquet!')">Gift 1</div>
+            <div class="gift-card" onclick="alert('✉️ Opening your Love Letter...')">Gift 2</div>
+            <div class="gift-card" onclick="alert('🎵 Scan the QR code for your song!')">Gift 3</div>
+        </div>
+    </div>
+
+    <script>
+        function moveNoButton() {
+            const btn = document.getElementById('noBtn');
+            // Calculate random positions within the screen
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function nextScreen() {
+            document.getElementById('screen1').classList.add('hidden');
+            document.getElementById('screen2').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
